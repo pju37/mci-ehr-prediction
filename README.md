@@ -29,10 +29,12 @@ We developed supervised machine learning models to predict MCI status at 0, 1, 3
   - Random Forest (RF)
   - Gradient Boosted Models (GBM)
 
+We focused on these models because they balance **clinical interpretability, scalability, and feasibility**. Traditional ML approaches are easier to validate, deploy, and explain to clinicians compared to complex deep learning architectures, which often require larger datasets, specialized infrastructure, and longer training times. For initiatives like **DREAM Challenges** or healthcare system integration, starting with well-established, efficient models ensures results are both **transparent** and **practically implementable**—recognizing that not every problem needs deep learning to achieve impact.
+
 - **Validation Strategy**:
   - 80/20 train/test split
   - 5-fold cross-validation for hyperparameter tuning
-  - External validation on prospective EHR data and MoCA-based patient cohort
+  - **External validation**: Models were tested on both prospective EHR data (to assess real-world generalizability) and a MoCA-based patient cohort (to compare against an independent, clinically accepted measure of cognition).
   - Model interpretability using SHAP values
 
 ---
@@ -84,5 +86,15 @@ Using SHAP values, we identified the most influential features across all time w
 
 ![SHAP Summary](results/phecode.png)
 
+
+### Interpretation
+
+- **Gradient Boosting** consistently achieved the best performance, with AUROC up to 0.77 at diagnosis, but accuracy declined as the prediction window extended to 5 years.  
+- **Random Forest** was slightly less accurate but more stable across time horizons, making it well-suited for feature interpretation.  
+- **All models outperformed chance substantially** (baseline AUPRC ≈ 0.09), showing that structured EHR data contains strong early signals of MCI risk.  
+- Validation showed expected performance drops, but models remained predictive on unseen prospective data. Interestingly, when validated against **MoCA assessments**, AUPRC improved due to the more balanced impairment distribution, suggesting robustness across different clinical measures.  
+- Key risk factors included **age, cardiovascular/metabolic conditions, depression, tobacco use, and socioeconomic stressors**, aligning with known literature but also highlighting underreported predictors such as **opioid use, cancer screenings, and family history of dementia**.
+
+Together, these results support the use of machine learning on routine EHR data as a scalable, first-line tool for identifying patients at elevated risk of MCI years before clinical diagnosis.
 
 ---
