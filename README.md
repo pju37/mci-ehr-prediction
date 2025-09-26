@@ -39,6 +39,10 @@ We developed supervised machine learning models to predict MCI status at 0, 1, 3
 
 ## Results
 
+### Model Performance for Gradient Boosting, LASSO, and Random Forest
+
+![Model Performance Boxplot](results/boxplot.png)
+
 ### AUROC Scores
 
 | Model               | 0 year          | 1 year          | 3 year          | 5 year          |
@@ -55,6 +59,14 @@ We developed supervised machine learning models to predict MCI status at 0, 1, 3
 | Random Forest       | 0.281 ± 0.047   | 0.269 ± 0.044   | 0.251 ± 0.043   | 0.225 ± 0.038   |
 | Logistic Regression | 0.219 ± 0.036   | 0.203 ± 0.035   | 0.193 ± 0.032   | 0.170 ± 0.027   |
 
+### Validation
+
+![AUROC Performance on Validation](results/auroc_validation.png)
+
+![AUPRC Performance on Validation](results/auprc_validation.png)
+
+
+
 ### Key Predictive Features
 
 Using SHAP values, we identified the most influential features across all time windows:
@@ -67,5 +79,10 @@ Using SHAP values, we identified the most influential features across all time w
 - Tobacco use (long-term predictors)
 - Family history of dementia
 - Psychosocial and socioeconomic indicators
+
+![SHAP Summary](results/shap_summary_model_year_0.png)
+
+![SHAP Summary](results/phecode.png)
+
 
 ---
